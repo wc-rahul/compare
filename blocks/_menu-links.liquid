@@ -1,0 +1,74 @@
+{%- style -%}
+  .megamenu_{{ block.id }}{width:100%;max-width:100%;}
+  .megamenu_{{ block.id }} .right_cnt_mega{gap:24px;width:100%;max-width:100%;display:flex;padding:0 24px;justify-content:center;}
+  .megamenu_{{ block.id }} .mega-menu__list{--coloumn-grid-menulink:{{block.settings.dropdwon_split_columns}};
+  --menu-vertical-gap:24px;width:100%;display:flex;flex-direction:column;flex-wrap:wrap;max-height:278px;
+  max-width:100%;
+  grid-template-columns:repeat(var(--coloumn-grid-menulink),1fr);}
+{%- endstyle -%}
+  {% assign id = 'MegaMenuList-{{ parent_link.links.size }}' %}
+  <div class="megamenu_{{ block.id }}">
+      {% render 'mega-menu-list',
+        parent_link: block.settings.menu,
+        id: block.settings.menu.links.size,
+        grid_columns_count: 5,
+        grid_columns_count_tablet: 4,
+        grid_columns_count_collection_images: 8,
+        menu_content_type: '',
+        content_aspect_ratio: '1:1',
+        image_border_radius: '20',
+        promo_card_number: 2
+      %}
+  </div>
+{% schema %}
+{
+  "name": "Menu Links",
+  "tag": null,
+  "settings": [
+    {
+      "type": "select",
+      "id": "dropdwon_split_columns",
+      "label": "Dropdwon split columns",
+      "info": "This will split the dropdown into the number of columns you select",
+      "options": [
+        {
+          "value": "1",
+          "label": "1 column"
+        },
+        {
+          "value": "2",
+          "label": "2 columns"
+        },
+        {
+          "value": "3",
+          "label": "3 columns"
+        },
+        {
+          "value": "4",
+          "label": "4 columns"
+        },
+        {
+          "value": "5",
+          "label": "5 columns"
+        },
+        {
+          "value": "6",
+          "label": "6 columns"
+        }
+      ],
+      "default": "5"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation menu"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Menu Links"
+    }
+  ]
+}
+{% endschema %}
